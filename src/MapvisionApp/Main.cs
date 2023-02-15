@@ -43,9 +43,9 @@ namespace MapvisionApp
             _enumDataType = EnumDataType.OutliersData;
             var result = _calculationsSvc.GetOutlier(out List<double> xOutliers, out List<double> yOutliers, out List<double> zOutliers);
             DataGridView.AddToGridView(result);
-            DataGridView.SearchOutliersAndChangeColor(xOutliers, EnumAxis.X);
-            DataGridView.SearchOutliersAndChangeColor(yOutliers, EnumAxis.Y);
-            DataGridView.SearchOutliersAndChangeColor(zOutliers, EnumAxis.Z);
+            DataGridView.SearchForOutliersAndChangeColor(xOutliers, EnumAxis.X);
+            DataGridView.SearchForOutliersAndChangeColor(yOutliers, EnumAxis.Y);
+            DataGridView.SearchForOutliersAndChangeColor(zOutliers, EnumAxis.Z);
             WriteInStatusBar("Get outliers is done!", $"Row count: {result.Count()}.");
         }
         private void DataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -92,41 +92,36 @@ namespace MapvisionApp
         }        
         private void PrintSplitButton_ButtonClick(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
-            saveFileDialog.Title = "Save as CSV file";
-            saveFileDialog.FileName = $"Mapvision_{_enumDataType.ToString()}";
 
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string filePath = saveFileDialog.FileName;
-                // Write the datagridview data to the export file
-                using (var writer = new StreamWriter(filePath))
-                {
-                    // Write the header row
-                    foreach (DataGridViewColumn column in DataGridView.Columns)
-                    {
-                        writer.Write(column.HeaderText + ",");
-                    }
-                    writer.WriteLine();
+            // Write the datagridview data to the export file
+            DataGridView.ExportToCsv(_enumDataType.ToString());
 
-                    // Write the data rows
-                    foreach (DataGridViewRow row in DataGridView.Rows)
-                    {
-                        foreach (DataGridViewCell cell in row.Cells)
-                        {
-                            writer.Write(cell.Value + ",");
-                        }
-                        writer.WriteLine();
-                    }
-                }
-            }
         }
         #endregion
         private void WriteInStatusBar(string? label = null, string? result = null)
         {
             if (label != null) LabelStripStatus.Text = label;
             if (result != null) ResultStripStatus.Text = result;
+        }
+
+        private void SearchTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '-')
+            {
+                e.Handled = true;
+            }
+
+            // Allow only one decimal point
+            if (e.KeyChar == '.' && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+
+            // Allow only one negative sign at the beginning
+            if (e.KeyChar == '-' && (sender as TextBox).Text.Length > 0)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

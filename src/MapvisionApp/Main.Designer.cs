@@ -204,6 +204,7 @@
             this.SearchTextBox.Size = new System.Drawing.Size(89, 23);
             this.SearchTextBox.TabIndex = 5;
             this.CalculateVariancesToolTip.SetToolTip(this.SearchTextBox, "Search for value.");
+            this.SearchTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SearchTextBox_KeyPress);
             // 
             // ShowAllButton
             // 

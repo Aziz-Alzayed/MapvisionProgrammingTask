@@ -20,9 +20,10 @@ Build the solution, and make MapvisionApp.csproj as the startup project.
 - Unit Tests.
 - Documentation.
 - Software requirements:
-    - Get variations values for each axis :heavy_check_mark: .
-    - Get (outliers) :heavy_check_mark: .
-    - Get trends :heavy_check_mark: .
+    - Calculating variations using Population Variance with formula σ2 = ∑ (xi – x̄)2/(n – 1)  :heavy_check_mark: .
+    - Calculating outliers using Statistical outlier detection Z-score :heavy_check_mark: .
+    - Calculating trends using Simple Regression slope :heavy_check_mark: .
+    - Save DataGrisView results as CSV.
 
 ## Does this thing has a license?
 Yes, it does.

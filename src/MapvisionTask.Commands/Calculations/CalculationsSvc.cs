@@ -11,11 +11,7 @@ namespace MapvisionTask.Services.Calculations
         public CalculationsSvc(IPartPointsQueries partPointsQueries) {
             _partPointsQueries = partPointsQueries;
         }
-        public double GetVariance(EnumAxis enumAxis)
-        {
-            var points = _partPointsQueries.GetAxisValues((EnumAxis)enumAxis);
-            return CalculatePopulationVariance(points);
-        }
+        
         public string CheckTrend()
         {
             var points = _partPointsQueries.GetAllPartPoints();
@@ -56,6 +52,10 @@ namespace MapvisionTask.Services.Calculations
                 return Trend.Flat;
             }
         }
+        /// <param name="xOutliers">returns outliers in X axis.</param>
+        /// <param name="yOutliers">returns outliers in Y axis.</param>
+        /// <param name="zOutliers">returns outliers in Z axis.</param>
+        /// <returns>List os PartPoints that have outliers.</returns>
         public IEnumerable<PartPoint> GetOutlier(out List<double> xOutliers, out List<double> yOutliers, out List<double> zOutliers)
         {
             try
@@ -90,7 +90,7 @@ namespace MapvisionTask.Services.Calculations
             }
         }
         /// <summary>
-        /// Using Statistical outlier detection Z-score. 
+        /// Calculate Outliers using Statistical outlier detection Z-score. 
         /// </summary>
         /// <param name="values"></param>
         /// <returns></returns>
@@ -115,6 +115,12 @@ namespace MapvisionTask.Services.Calculations
                 }
             }
             return outLierNumbers.ToList();
+        }
+        /// <returns>Return Population Variance for the specified axis.</returns>
+        public double GetVariance(EnumAxis enumAxis)
+        {
+            var points = _partPointsQueries.GetAxisValues((EnumAxis)enumAxis);
+            return CalculatePopulationVariance(points);
         }
         /// <summary>
         /// Calculating the Population Variance of a double list using formula σ2 = ∑ (xi – x̄)2/(n – 1).

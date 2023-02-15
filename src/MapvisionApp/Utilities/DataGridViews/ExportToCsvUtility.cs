@@ -1,32 +1,43 @@
 ﻿using System.Text;
+using System.Windows.Forms;
 
 namespace MapvisionApp.Utilities.DataGridViews
 {
     public static class ExportToCsvUtility
     {
-        public static void ExportToCsv(this DataGridView dataGridView, string fileName)
+        /// <summary>
+        /// Export Datagridview Data as CSV file.
+        /// </summary>
+        public static void ExportToCsv(this DataGridView dataGridView,string filename)
         {
-            StringBuilder sb = new StringBuilder();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+            saveFileDialog.Title = "Save as CSV file";
+            saveFileDialog.FileName = $"Mapvision_{filename}";
 
-            // write header row
-            foreach (DataGridViewColumn column in dataGridView.Columns)
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                sb.Append(column.HeaderText + ",");
-            }
-            sb.AppendLine();
-
-            // write data rows
-            foreach (DataGridViewRow row in dataGridView.Rows)
-            {
-                foreach (DataGridViewCell cell in row.Cells)
+                // Write the datagridview data to the export file
+                using (var writer = new StreamWriter(saveFileDialog.FileName))
                 {
-                    sb.Append(cell.Value.ToString() + ",");
-                }
-                sb.AppendLine();
-            }
+                    // Write the header row
+                    foreach (DataGridViewColumn column in dataGridView.Columns)
+                    {
+                        writer.Write(column.HeaderText + ",");
+                    }
+                    writer.WriteLine();
 
-            // save file
-            File.WriteAllText(fileName, sb.ToString());
+                    // Write the data rows
+                    foreach (DataGridViewRow row in dataGridView.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            writer.Write(cell.Value + ",");
+                        }
+                        writer.WriteLine();
+                    }
+                }
+            }
         }
     }
 }

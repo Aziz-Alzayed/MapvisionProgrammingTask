@@ -6,7 +6,13 @@ namespace MapvisionApp.Utilities.DataGridViews
 {
     public static class MainFormUtilities
     {
-        public static void SearchOutliersAndChangeColor(this DataGridView dataGridView, List<double> values, EnumAxis enumAxis)
+        /// <summary>
+        /// Search inside DataGridView datasource and filter and color points and values outliers.
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <param name="values"></param>
+        /// <param name="enumAxis"></param>
+        public static void SearchForOutliersAndChangeColor(this DataGridView dataGridView, List<double> values, EnumAxis enumAxis)
         {
             int columnIndex = (int)enumAxis;
             foreach (DataGridViewRow row in dataGridView.Rows)
