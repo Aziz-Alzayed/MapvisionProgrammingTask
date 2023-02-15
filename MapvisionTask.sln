@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapvisionApp", "src\MapvisionApp\MapvisionApp.csproj", "{C9A2ECC9-A517-4F60-AE36-00E686AD84DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Execution", "Execution", "{FD3C9CD7-D983-49E5-A38F-8248B53CE44D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapvisionTask.Data", "src\MapvisionTask.Data\MapvisionTask.Data.csproj", "{D9A21A1E-7462-4A65-80C7-8C019BAB555B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{526DF59B-2EEB-4BA3-980C-421B6BD745FD}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapvisionTask.Services", "src\MapvisionTask.Commands\MapvisionTask.Services.csproj", "{0F9218DC-3C07-4648-9894-AEE0910D185B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapvisionTask.Tests", "src\MapvisionTask.Test\MapvisionTask.Tests.csproj", "{F4C3F53A-EA43-4535-B286-08290E1A5621}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9A2ECC9-A517-4F60-AE36-00E686AD84DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9A2ECC9-A517-4F60-AE36-00E686AD84DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9A2ECC9-A517-4F60-AE36-00E686AD84DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9A2ECC9-A517-4F60-AE36-00E686AD84DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9A21A1E-7462-4A65-80C7-8C019BAB555B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9A21A1E-7462-4A65-80C7-8C019BAB555B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9A21A1E-7462-4A65-80C7-8C019BAB555B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9A21A1E-7462-4A65-80C7-8C019BAB555B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F9218DC-3C07-4648-9894-AEE0910D185B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F9218DC-3C07-4648-9894-AEE0910D185B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F9218DC-3C07-4648-9894-AEE0910D185B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F9218DC-3C07-4648-9894-AEE0910D185B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4C3F53A-EA43-4535-B286-08290E1A5621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4C3F53A-EA43-4535-B286-08290E1A5621}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4C3F53A-EA43-4535-B286-08290E1A5621}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4C3F53A-EA43-4535-B286-08290E1A5621}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C9A2ECC9-A517-4F60-AE36-00E686AD84DB} = {FD3C9CD7-D983-49E5-A38F-8248B53CE44D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4918C02D-4C36-4184-BB13-EC30BC410256}
+	EndGlobalSection
+EndGlobal
